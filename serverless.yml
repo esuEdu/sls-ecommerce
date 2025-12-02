@@ -1,0 +1,14 @@
+org: eduardorvieira
+service: sls-ecommrce
+
+provider:
+    name: aws
+    runtime: nodejs24.x
+
+functions:
+    hello:
+        handler: src/handler.hello
+        events:
+            - httpApi:
+                  path: /
+                  method: get
