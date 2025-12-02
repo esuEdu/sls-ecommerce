@@ -3,6 +3,7 @@ service: sls-ecommrce
 
 provider:
     name: aws
+    region: us-east-1
     runtime: nodejs24.x
 
 functions:
