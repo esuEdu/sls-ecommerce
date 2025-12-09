@@ -1,27 +1,32 @@
 {
-  "name": "sls-ecommerce",
-  "version": "1.0.0",
-  "description": "Este projeto serve como referência para o estudo de desenvolvimento backend com AWS Lambda e TypeScript, focado na implementação rápida de um Mínimo Produto Viável (MVP) de um sistema de e-commerce.",
-  "homepage": "https://github.com/esuEdu/sls-ecommerce#readme",
-  "bugs": {
-    "url": "https://github.com/esuEdu/sls-ecommerce/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/esuEdu/sls-ecommerce.git"
-  },
-  "license": "ISC",
-  "author": "",
-  "type": "commonjs",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "serverless": "^4.26.1"
-  },
-  "devDependencies": {
-    "@types/node": "^24.10.1",
-    "typescript": "^5.9.3"
-  }
+	"name": "sls-ecommerce",
+	"version": "1.0.0",
+	"description": "Este projeto serve como referência para o estudo de desenvolvimento backend com AWS Lambda e TypeScript, focado na implementação rápida de um Mínimo Produto Viável (MVP) de um sistema de e-commerce.",
+	"homepage": "https://github.com/esuEdu/sls-ecommerce#readme",
+	"bugs": {
+		"url": "https://github.com/esuEdu/sls-ecommerce/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/esuEdu/sls-ecommerce.git"
+	},
+	"license": "ISC",
+	"author": "",
+	"type": "commonjs",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"devDependencies": {
+		"@types/aws-lambda": "^8.10.159",
+		"@types/node": "^24.10.1",
+		"serverless": "^4.26.1",
+		"typescript": "^5.9.3",
+		"zod": "^4.1.13"
+	},
+	"dependencies": {
+		"@aws-sdk/client-dynamodb": "^3.943.0",
+		"@aws-sdk/lib-dynamodb": "^3.943.0",
+		"electrodb": "^3.5.0"
+	}
 }

@@ -1,0 +1,33 @@
+createProduct:
+    handler: src/handlers/product/createProduct.handler
+    events:
+        - httpApi:
+              method: post
+              path: /products
+getProduct:
+    handler: src/handlers/product/getProduct.handler
+    events:
+        - httpApi:
+              method: get
+              path: /products/{id}
+
+listProduct:
+    handler: src/handlers/product/listProducts.handler
+    events:
+        - httpApi:
+              method: get
+              path: /products
+
+updateProduct:
+    handler: src/handlers/product/updateProduct.handler
+    events:
+        - httpApi:
+              method: patch
+              path: /products/{id}
+
+deleteProduct:
+    handler: src/handlers/product/deleteProduct.handler
+    events:
+        - httpApi:
+              method: delete
+              path: /products/{id}

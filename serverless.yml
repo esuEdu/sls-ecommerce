@@ -1,15 +1,29 @@
 org: eduardorvieira
-service: sls-ecommrce
+service: sls-ecommerce
 
 provider:
     name: aws
     region: us-east-1
-    runtime: nodejs24.x
+    runtime: nodejs20.x
+    environment:
+        PRODUCTS_TABLE: products
+        ORDERS_TABLE: orders
+        USERS_TABLE: users
+    iamRoleStatements:
+        - Effect: "Allow"
+          Action:
+              - dynamodb:PutItem
+              - dynamodb:GetItem
+              - dynamodb:UpdateItem
+              - dynamodb:DeleteItem
+              - dynamodb:Scan
+              - dynamodb:Query
+          Resource: "*"
+    httpApi:
+        cors: true
 
 functions:
-    hello:
-        handler: src/handler.hello
-        events:
-            - httpApi:
-                  path: /
-                  method: get
+    - ${file(resources/product-lambda.yml)}
+
+resources:
+    - ${file(resources/dynamodb-tables.yml)}
