@@ -141,3 +141,5 @@ vite.config.ts.timestamp-*
 # Serverless
 .serverless
 
+# OS
+.DS_Store
