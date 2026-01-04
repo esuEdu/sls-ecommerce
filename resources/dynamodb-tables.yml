@@ -4,15 +4,67 @@ Resources:
         Properties:
             TableName: products
             BillingMode: PAY_PER_REQUEST
+
             AttributeDefinitions:
                 - AttributeName: pk
                   AttributeType: S
+                - AttributeName: sk
+                  AttributeType: S
+
+                # GSIs
+                - AttributeName: gsi1pk
+                  AttributeType: S
+                - AttributeName: gsi1sk
+                  AttributeType: S
+                - AttributeName: gsi2pk
+                  AttributeType: S
+                - AttributeName: gsi2sk
+                  AttributeType: S
+                - AttributeName: gsi3pk
+                  AttributeType: S
+                - AttributeName: gsi3sk
+                  AttributeType: S
+
             KeySchema:
                 - AttributeName: pk
                   KeyType: HASH
+                - AttributeName: sk
+                  KeyType: RANGE
+
+            GlobalSecondaryIndexes:
+                # List products
+                - IndexName: gsi1
+                  KeySchema:
+                      - AttributeName: gsi1pk
+                        KeyType: HASH
+                      - AttributeName: gsi1sk
+                        KeyType: RANGE
+                  Projection:
+                      ProjectionType: ALL
+
+                # Category filter
+                - IndexName: gsi2
+                  KeySchema:
+                      - AttributeName: gsi2pk
+                        KeyType: HASH
+                      - AttributeName: gsi2sk
+                        KeyType: RANGE
+                  Projection:
+                      ProjectionType: ALL
+
+                # Search
+                - IndexName: gsi3
+                  KeySchema:
+                      - AttributeName: gsi3pk
+                        KeyType: HASH
+                      - AttributeName: gsi3sk
+                        KeyType: RANGE
+                  Projection:
+                      ProjectionType: ALL
+
             Tags:
                 - Key: Service
-                  Value: sls-ecommrce
+                  Value: sls-ecommerce
 
     OrdersTable:
         Type: AWS::DynamoDB::Table
