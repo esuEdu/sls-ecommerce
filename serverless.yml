@@ -9,6 +9,7 @@ provider:
         PRODUCTS_TABLE: products
         ORDERS_TABLE: orders
         USERS_TABLE: users
+        JWT_SECRET: ${env:JWT_SECRET, "dev-secret"}
     iamRoleStatements:
         - Effect: "Allow"
           Action:
@@ -21,8 +22,16 @@ provider:
           Resource: "*"
     httpApi:
         cors: true
+        authorizers:
+            jwtAuthorizer:
+                type: request
+                functionName: authorizer
+                identitySource:
+                    - "$request.header.Authorization"
+                resultTtlInSeconds: 0
 
 functions:
+    - ${file(resources/auth-lambda.yml)}
     - ${file(resources/product-lambda.yml)}
 
 resources:

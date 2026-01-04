@@ -1,0 +1,16 @@
+registerUser:
+    handler: src/services/auth/handlers/registerUser.handler
+    events:
+        - httpApi:
+              method: post
+              path: /auth/register
+
+loginUser:
+    handler: src/services/auth/handlers/loginUser.handler
+    events:
+        - httpApi:
+              method: post
+              path: /auth/login
+
+authorizer:
+    handler: src/services/auth/handlers/authorizer.handler

@@ -1,12 +1,16 @@
-export const ok = (data: unknown) => ({
-	statusCode: 200,
-	body: JSON.stringify(data),
+type ResponseBody = Record<string, unknown> | unknown;
+
+const json = (statusCode: number, body?: ResponseBody) => ({
+	statusCode,
+	headers: {
+		"Content-Type": "application/json",
+	},
+	body: body ? JSON.stringify(body) : undefined,
 });
 
-export const created = (data: unknown) => ({
-	statusCode: 201,
-	body: JSON.stringify(data),
-});
+export const ok = (data: ResponseBody) => json(200, data);
+
+export const created = (data: ResponseBody) => json(201, data);
 
 export const noContent = () => ({
 	statusCode: 204,

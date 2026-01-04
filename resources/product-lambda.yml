@@ -4,6 +4,7 @@ createProduct:
         - httpApi:
               method: post
               path: /products
+              authorizer: jwtAuthorizer
 getProduct:
     handler: src/services/products/handlers/getProduct.handler
     events:
@@ -24,6 +25,7 @@ updateProduct:
         - httpApi:
               method: patch
               path: /products/{id}
+              authorizer: jwtAuthorizer
 
 deleteProduct:
     handler: src/services/products/handlers/deleteProduct.handler
@@ -31,3 +33,4 @@ deleteProduct:
         - httpApi:
               method: delete
               path: /products/{id}
+              authorizer: jwtAuthorizer

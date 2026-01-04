@@ -1,4 +1,3 @@
-// src/services/products/handlers/createProduct.ts
 import { randomUUID } from "crypto";
 import { ProductEntity } from "../product.entity";
 import { createProductSchema } from "../schemas/product.schema";
