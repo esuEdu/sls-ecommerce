@@ -8,7 +8,7 @@ import { requireAdmin } from "../../../libs/auth/requireAdmin";
 import { APIGatewayProxyEvent } from "aws-lambda";
 
 export const handler = async (event: APIGatewayProxyEvent) => {
-	// requireAdmin(event);
+	requireAdmin(event);
 
 	const body = parseBody(createProductSchema, event.body);
 
