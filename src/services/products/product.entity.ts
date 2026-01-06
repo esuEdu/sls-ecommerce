@@ -22,6 +22,7 @@ export const ProductEntity = new Entity(
 			price: { type: "number", required: true },
 			stock: { type: "number", required: true },
 			imageUrl: { type: "string" },
+			status: { type: "string", required: true, default: "ACTIVE" },
 			createdAt: {
 				type: "string",
 				default: () => new Date().toISOString(),

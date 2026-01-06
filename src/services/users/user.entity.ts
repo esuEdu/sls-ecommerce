@@ -21,6 +21,7 @@ export const UserEntity = new Entity(
 			email: { type: "string", required: true },
 			hashPassword: { type: "string", required: true },
 			role: { type: "string", required: true, default: "USER" },
+			status: { type: "string", required: true, default: "ACTIVE" },
 			createdAt: {
 				type: "string",
 				default: () => new Date().toISOString(),

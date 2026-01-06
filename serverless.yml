@@ -32,6 +32,7 @@ provider:
 
 functions:
     - ${file(resources/auth-lambda.yml)}
+    - ${file(resources/user-lambda.yml)}
     - ${file(resources/product-lambda.yml)}
 
 resources:

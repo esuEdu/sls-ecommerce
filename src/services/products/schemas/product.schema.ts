@@ -7,6 +7,7 @@ export const createProductSchema = z.object({
 	price: z.number().positive(),
 	stock: z.number().int().nonnegative(),
 	imageUrl: z.string().url().optional(),
+	status: z.enum(["ACTIVE", "INACTIVE"]).default("ACTIVE"),
 });
 
 export const listProductsSchema = z.object({

@@ -1,0 +1,29 @@
+getUser:
+    handler: src/services/users/handlers/getUser.handler
+    events:
+        - httpApi:
+              method: get
+              path: /users/{id}
+
+listUser:
+    handler: src/services/users/handlers/listUser.handler
+    events:
+        - httpApi:
+              method: get
+              path: /users
+
+getMe:
+    handler: src/services/users/handlers/getMe.handler
+    events:
+        - httpApi:
+              method: get
+              path: /users/me
+              authorizer: jwtAuthorizer
+
+updateUser:
+    handler: src/services/users/handlers/updateUser.handler
+    events:
+        - httpApi:
+              method: patch
+              path: /users/{id}
+              authorizer: jwtAuthorizer
