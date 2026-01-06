@@ -1,11 +1,19 @@
 import { UserEntity } from "../user.entity";
 import { listUsersSchema } from "../schemas/user.schema";
 import { ok } from "../../../libs/utils/responses";
+import { forbidden } from "../../../libs/utils/errors";
 import { APIGatewayProxyEvent } from "aws-lambda";
 import { withErrorHandling } from "../../../libs/utils/withErrorHandling";
 
 export const handler = withErrorHandling(
 	async (event: APIGatewayProxyEvent) => {
+		const authenticatedUserRole = event.requestContext.authorizer?.lambda
+			?.role as string | undefined;
+
+		if (authenticatedUserRole !== "ADMIN") {
+			throw forbidden("Only admins can list users");
+		}
+
 		const params = listUsersSchema.parse(event.queryStringParameters || {});
 		const { role, search, limit, cursor } = params;
 

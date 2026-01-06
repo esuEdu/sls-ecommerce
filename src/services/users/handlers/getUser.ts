@@ -1,12 +1,18 @@
 import { UserEntity } from "../user.entity";
 import { ok } from "../../../libs/utils/responses";
-import { notFound } from "../../../libs/utils/errors";
+import { notFound, forbidden } from "../../../libs/utils/errors";
 import { APIGatewayProxyEvent } from "aws-lambda";
 import { withErrorHandling } from "../../../libs/utils/withErrorHandling";
 
 export const handler = withErrorHandling(
 	async (event: APIGatewayProxyEvent) => {
 		const userId = event.pathParameters?.id;
+		const authenticatedUserRole = event.requestContext.authorizer?.lambda
+			?.role as string | undefined;
+
+		if (authenticatedUserRole !== "ADMIN") {
+			throw forbidden("Only admins can access user details");
+		}
 
 		if (!userId) {
 			throw notFound("User ID is required");

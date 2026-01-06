@@ -19,13 +19,10 @@ export const handler = withErrorHandling(
 		}
 
 		if (!authenticatedUserId) {
-			throw notFound("User not authenticated");
+			throw forbidden("User not authenticated");
 		}
 
-		if (
-			userId !== authenticatedUserId &&
-			authenticatedUserRole !== "ADMIN"
-		) {
+		if (userId !== authenticatedUserId) {
 			throw forbidden("You can only update your own profile");
 		}
 
@@ -37,12 +34,12 @@ export const handler = withErrorHandling(
 			throw notFound(`User with id ${userId} not found`);
 		}
 
-		if (
-			updateData.role &&
-			updateData.role !== existingUser.data.role &&
-			authenticatedUserRole !== "ADMIN"
-		) {
-			throw forbidden("Only admins can change user roles");
+		if (updateData.role) {
+			throw forbidden("You cannot change your own role");
+		}
+
+		if (updateData.status) {
+			throw forbidden("You cannot change your own status");
 		}
 
 		const result = await UserEntity.update({ userId })
