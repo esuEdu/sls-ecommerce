@@ -9,6 +9,7 @@ provider:
         PRODUCTS_TABLE: products
         ORDERS_TABLE: orders
         USERS_TABLE: users
+        CARTS_TABLE: carts
         JWT_SECRET: ${env:JWT_SECRET, "dev-secret"}
     iamRoleStatements:
         - Effect: "Allow"
@@ -34,6 +35,7 @@ functions:
     - ${file(resources/auth-lambda.yml)}
     - ${file(resources/user-lambda.yml)}
     - ${file(resources/product-lambda.yml)}
+    - ${file(resources/cart-lambda.yml)}
 
 resources:
     - ${file(resources/dynamodb-tables.yml)}

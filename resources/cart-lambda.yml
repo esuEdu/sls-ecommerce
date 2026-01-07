@@ -1,0 +1,46 @@
+functions:
+    getCart:
+        handler: src/services/carts/handlers/getCart.handler
+        environment:
+            CARTS_TABLE: carts
+        events:
+            - httpApi:
+                  path: /cart
+                  method: GET
+                  authorizer:
+                      name: authAuthorizer
+
+    addItemToCart:
+        handler: src/services/carts/handlers/addItemToCart.handler
+        environment:
+            CARTS_TABLE: carts
+            PRODUCTS_TABLE: products
+        events:
+            - httpApi:
+                  path: /cart/items
+                  method: POST
+                  authorizer:
+                      name: authAuthorizer
+
+    updateCartItem:
+        handler: src/services/carts/handlers/updateCartItem.handler
+        environment:
+            CARTS_TABLE: carts
+            PRODUCTS_TABLE: products
+        events:
+            - httpApi:
+                  path: /cart/items/{productId}
+                  method: PUT
+                  authorizer:
+                      name: authAuthorizer
+
+    removeCartItem:
+        handler: src/services/carts/handlers/removeCartItem.handler
+        environment:
+            CARTS_TABLE: carts
+        events:
+            - httpApi:
+                  path: /cart/items/{productId}
+                  method: DELETE
+                  authorizer:
+                      name: authAuthorizer
